@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: personal-website
+    env: python
+    startCommand: python app.py
+    envVars:
+      - key: MAIL_USERNAME
+        fromEnvVar: MAIL_USERNAME
+      - key: MAIL_PASSWORD
+        fromEnvVar: MAIL_PASSWORD
+    buildCommand: pip install -r requirements.txt
+    healthCheckPath: /
+    minMemory: 512
+    maxMemory: 1024
+    disk: 1024
+    cpu: 1

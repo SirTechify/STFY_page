@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SirTechify - Personal Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">STFY</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>SirTechify</h1>
+            <p class="subtitle">Engineer & Emerging Tech Enthusiast</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/SirTechify" class="btn primary" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.youtube.com/@sirtechify" class="btn secondary" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-youtube"></i> YouTube
+                </a>
+            </div>
+            <div class="mailing-list">
+                <h2>Stay Updated</h2>
+                <div class="mailing-list-content">
+                    <p>Subscribe to our mailing list to get notified about new YouTube videos and Instagram posts.</p>
+                    <form id="mailing-list-form">
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I've spent years developing expertise in engineering, with a strong focus on hardware and systems. As I continue to drive business strategy, I'm constantly seeking out new ways to apply my knowledge and experience to stay ahead of the curve.</p>
+            </div>
+            <section id="projects" class="projects">
+                <h2>My Projects</h2>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <div class="project-card">
+                                    <h3>Project 1</h3>
+                                    <p>Description of project 1</p>
+                                    <div class="project-links">
+                                        <a href="#" class="btn primary">Live Demo</a>
+                                        <a href="#" class="btn secondary">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="project-card">
+                                    <h3>Project 2</h3>
+                                    <p>Description of project 2</p>
+                                    <div class="project-links">
+                                        <a href="#" class="btn primary">Live Demo</a>
+                                        <a href="#" class="btn secondary">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="project-card">
+                                    <h3>Project 3</h3>
+                                    <p>Description of project 3</p>
+                                    <div class="project-links">
+                                        <a href="#" class="btn primary">Live Demo</a>
+                                        <a href="#" class="btn secondary">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev">&lt;</button>
+                    <button class="carousel-btn next">&gt;</button>
+                    <div class="carousel-dots"></div>
+                </div>
+            </section>
+            <div class="skills">
+                <h3>Skills</h3>
+                <div class="skill-tags">
+                    <span>engineering</span>
+                    <span>robotics</span>
+                    <span>python</span>
+                    <span>AI Tools</span>
+                    <span>electronics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mailing-list" class="mailing-list">
+        <h2>Stay Updated</h2>
+        <div class="mailing-list-content">
+            <p>Subscribe to our mailing list to get notified about new YouTube videos and Instagram posts.</p>
+            <form id="mailing-list-form">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <button type="submit" class="btn primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Get in Touch</h2>
+        <div class="contact-content">
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn primary">Send Message</button>
+            </form>
+            <div class="social-links">
+                <a href="https://github.com/SirTechify" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.youtube.com/@sirtechify" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/sirtechify" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 SirTechify. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

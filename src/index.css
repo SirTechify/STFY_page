@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mailing-list {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.mailing-list h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.mailing-list-content p {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+#mailing-list-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#mailing-list-form .form-group {
+  margin-bottom: 1rem;
+}
+
+#mailing-list-form input[type="email"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#mailing-list-form button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+#mailing-list-form button:hover {
+  background-color: #0056b3;
+}
+
+#root {
+  min-height: 100vh;
+}

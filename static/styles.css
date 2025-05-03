@@ -1,0 +1,786 @@
+:root {
+    --space-black: #000000;
+    --space-gray: #1a1a1a;
+    --neon-blue: #00a3ff;
+    --neon-blue-dark: #0066cc;
+    --neon-green: #06d6a0;
+    --neon-pink: #ff6b6b;
+    --neon-purple: #9b59b6;
+    --text-light: #ffffff;
+    --text-dark: #8892b0;
+    --background: #000000;
+    --card: #1a1a1a;
+    --border: rgba(255, 255, 255, 0.1);
+    --gradient-1: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-green) 100%);
+    --gradient-2: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+    --gradient-3: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-pink) 100%);
+    --glow: 0 0 15px rgba(0, 163, 255, 0.5);
+    --glow-purple: 0 0 15px rgba(155, 89, 182, 0.5);
+    --glow-pink: 0 0 15px rgba(255, 107, 107, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: var(--space-black);
+    overflow-x: hidden;
+}
+
+/* Add subtle stars effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, var(--text-light) 1px, transparent 1px),
+        radial-gradient(circle, var(--text-light) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar a {
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+.navbar a:hover {
+    color: var(--neon-blue);
+}
+
+.logo {
+    color: var(--neon-blue);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-1);
+    transition: width 0.3s ease;
+}
+
+.logo:hover::after {
+    width: 100%;
+}
+
+.logo:hover {
+    color: var(--neon-blue-dark);
+    text-shadow: var(--glow);
+}
+
+.navbar a {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--neon-blue);
+}
+
+.logo {
+    color: var(--neon-blue);
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--neon-blue-dark);
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+#dark-mode-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+    background-color: var(--border-color);
+}
+
+#dark-mode-toggle i {
+    font-size: 1.2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+}
+
+.hero-content {
+    padding: 0 1rem;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+.primary {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+.secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* About Section */
+.about {
+    padding: 5rem 10%;
+}
+
+.about h2, .projects h2, .contact h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.skills {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skill-tags span {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Projects Section */
+.projects {
+    padding: 5rem 10%;
+    background: rgba(17, 34, 64, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+margin: 0 auto;
+overflow: hidden;
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Contact Section */
+.contact {
+    padding: 5rem 10%;
+}
+
+.contact .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 4rem 1rem;
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.hero-content p {
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.hero-content p::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+.hero-content p:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.hero-content a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.hero-content a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transition: width 0.3s ease;
+}
+
+.hero-content a:hover::after {
+    width: 100%;
+}
+
+.hero-content a:hover {
+    color: var(--neon-blue-dark);
+    text-shadow: var(--glow);
+}
+
+.hero-content h1 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+}
+
+.hero-content a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.hero-content a:hover {
+    color: var(--neon-blue-dark);
+}
+
+.hero-content h1 {
+    color: var(--text-color);
+}
+
+.hero-content p {
+    color: var(--gray);
+}
+
+.mailing-list {
+    margin-top: 2rem;
+    text-align: center;
+    background: var(--card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+}
+
+.mailing-list h2 {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.mailing-list h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+.mailing-list h2:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.mailing-list-content {
+    max-width: 400px;
+    margin: 0 auto;
+    color: var(--text-dark);
+}
+
+#mailing-list-form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#mailing-list-form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1rem;
+    background: var(--background);
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#mailing-list-form input[type="email"]::placeholder {
+    color: var(--text-dark);
+}
+
+#mailing-list-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.2);
+    background: var(--card);
+}
+
+#mailing-list-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--gradient-1);
+    color: var(--text-light);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#mailing-list-form button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--gradient-2);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+#mailing-list-form button:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+#mailing-list-form button:hover {
+    background: var(--gradient-2);
+    text-shadow: var(--glow);
+    box-shadow: var(--glow);
+}
+
+.mailing-list h2 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.mailing-list-content {
+    max-width: 400px;
+    margin: 0 auto;
+    color: var(--text-dark);
+}
+
+#mailing-list-form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#mailing-list-form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+#mailing-list-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.2);
+}
+
+#mailing-list-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--neon-blue);
+    color: var(--text-light);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#mailing-list-form button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--neon-green);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+#mailing-list-form button:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+#mailing-list-form button:hover {
+    background-color: var(--neon-blue-dark);
+    color: var(--text-light);
+}
+
+.mailing-list h2 {
+    color: var(--text-color);
+}
+
+.mailing-list-content {
+    max-width: 400px;
+    margin: 0 auto;
+    color: var(--text-color);
+}
+
+#mailing-list-form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#mailing-list-form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+#mailing-list-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#mailing-list-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#mailing-list-form button:hover {
+    background-color: var(--primary-dark);
+}
+
+.mailing-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.mailing-list-content {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.mailing-list-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+#mailing-list-form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#mailing-list-form .form-group {
+    margin-bottom: 1rem;
+}
+
+#mailing-list-form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#mailing-list-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#mailing-list-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#mailing-list-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-icon {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
