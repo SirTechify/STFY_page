@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SirTechify - Frontend Test</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-section {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .pass {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .fail {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-section">
+        <h2>Frontend Functionality Tests</h2>
+        
+        <div class="test">
+            <h3>1. Mobile Menu Toggle</h3>
+            <button id="test-menu-toggle">Test Menu Toggle</button>
+            <div id="menu-test-result" class="test-result">Not tested</div>
+        </div>
+
+        <div class="test">
+            <h3>2. Carousel Navigation</h3>
+            <button id="test-carousel">Test Carousel</button>
+            <div id="carousel-test-result" class="test-result">Not tested</div>
+        </div>
+
+        <div class="test">
+            <h3>3. Form Submission (Mock)</h3>
+            <button id="test-form">Test Form Submission</button>
+            <div id="form-test-result" class="test-result">Not tested</div>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+    <script>
+        // Test 1: Menu Toggle
+        document.getElementById('test-menu-toggle').addEventListener('click', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuBtn && navLinks) {
+                menuBtn.click();
+                const isActive = navLinks.classList.contains('active');
+                const result = document.getElementById('menu-test-result');
+                
+                if (isActive) {
+                    result.textContent = 'PASS: Menu toggles correctly';
+                    result.className = 'test-result pass';
+                } else {
+                    result.textContent = 'FAIL: Menu does not toggle';
+                    result.className = 'test-result fail';
+                }
+                
+                // Reset after test
+                menuBtn.click();
+            } else {
+                document.getElementById('menu-test-result').textContent = 'ERROR: Menu elements not found';
+                document.getElementById('menu-test-result').className = 'test-result fail';
+            }
+        });
+
+        // Test 2: Carousel Navigation
+        document.getElementById('test-carousel').addEventListener('click', function() {
+            const carouselTrack = document.querySelector('.carousel-track');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            
+            if (carouselTrack && prevBtn && nextBtn) {
+                // Test next button
+                nextBtn.click();
+                const transform1 = carouselTrack.style.transform;
+                
+                // Test previous button
+                prevBtn.click();
+                const transform2 = carouselTrack.style.transform;
+                
+                const result = document.getElementById('carousel-test-result');
+                
+                if (transform1 && transform2 && transform1 !== transform2) {
+                    result.textContent = 'PASS: Carousel navigation works';
+                    result.className = 'test-result pass';
+                } else {
+                    result.textContent = 'FAIL: Carousel navigation not working';
+                    result.className = 'test-result fail';
+                }
+            } else {
+                document.getElementById('carousel-test-result').textContent = 'ERROR: Carousel elements not found';
+                document.getElementById('carousel-test-result').className = 'test-result fail';
+            }
+        });
+
+        // Test 3: Form Submission (Mock)
+        document.getElementById('test-form').addEventListener('click', function() {
+            const mailingListForm = document.getElementById('mailing-list-form');
+            
+            if (mailingListForm) {
+                const originalFetch = window.fetch;
+                let mockCalled = false;
+                
+                // Mock the fetch function
+                window.fetch = async (url, options) => {
+                    if (url === '/api/subscribe') {
+                        mockCalled = true;
+                        return {
+                            ok: true,
+                            status: 200,
+                            json: async () => ({ message: 'Successfully subscribed!' })
+                        };
+                    }
+                    return originalFetch(url, options);
+                };
+                
+                // Trigger form submission
+                mailingListForm.dispatchEvent(new Event('submit'));
+                
+                const result = document.getElementById('form-test-result');
+                
+                // Check if our mock was called
+                setTimeout(() => {
+                    if (mockCalled) {
+                        result.textContent = 'PASS: Form submission works';
+                        result.className = 'test-result pass';
+                    } else {
+                        result.textContent = 'FAIL: Form submission not working';
+                        result.className = 'test-result fail';
+                    }
+                    // Restore original fetch
+                    window.fetch = originalFetch;
+                }, 100);
+            } else {
+                document.getElementById('form-test-result').textContent = 'ERROR: Mailing list form not found';
+                document.getElementById('form-test-result').className = 'test-result fail';
+            }
+        });
+    </script>
+</body>
+</html>
