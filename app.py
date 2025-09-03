@@ -1,17 +1,9 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template, send_file
+from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_mail import Mail, Message
-from flask_cors import CORS
 import os
-import sys
 from dotenv import load_dotenv
 
-app = Flask(__name__, 
-            static_url_path='/static', 
-            static_folder='static',
-            template_folder='templates')
-
-# Enable CORS for all routes
-CORS(app)
+app = Flask(__name__, static_url_path='/static', static_folder='static')
 
 # Load environment variables
 load_dotenv()
@@ -120,19 +112,6 @@ def subscribe():
         app.logger.error(f"Error in subscribe endpoint: {str(e)}")
         return jsonify({'error': 'An error occurred while processing your subscription'}), 500
 
-# Serve React App
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    elif path != "" and os.path.exists(os.path.join(app.template_folder, path)):
-        return send_from_directory(app.template_folder, path)
-    else:
-        return send_from_directory(app.template_folder, 'index.html')
-
-# Vercel requires an app variable for serverless functions
-app = app if 'app' in locals() else app
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

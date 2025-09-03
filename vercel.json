@@ -3,29 +3,17 @@
   "builds": [
     {
       "src": "app.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
-      }
-    },
-    {
-      "src": "static/**",
-      "use": "@vercel/static"
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "app.py"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/templates/index.html"
+      "dest": "app.py"
     }
-  ]
+  ],
+  "env": {
+    "MAIL_USERNAME": "mail_username",
+    "MAIL_PASSWORD": "mail_password"
+  }
 }
