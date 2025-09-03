@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Local Test Page</h1>
+    
+    <div class="test-section">
+        <h2>JavaScript Test</h2>
+        <div id="js-test">Testing JavaScript... <span id="js-result"></span></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>API Test</h2>
+        <p>This will test if the Flask API endpoints are responding.</p>
+        <button onclick="testApi()">Test API</button>
+        <div id="api-result"></div>
+    </div>
+    
+    <script>
+        // Test JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const jsTest = document.getElementById('js-test');
+            const jsResult = document.getElementById('js-result');
+            
+            try {
+                jsResult.textContent = '✓ JavaScript is working!';
+                jsResult.className = 'success';
+            } catch (e) {
+                jsResult.textContent = '✗ JavaScript error: ' + e.message;
+                jsResult.className = 'error';
+            }
+        });
+        
+        // Test API
+        async function testApi() {
+            const apiResult = document.getElementById('api-result');
+            apiResult.textContent = 'Testing API...';
+            
+            try {
+                const response = await fetch('/api/test');
+                const data = await response.json();
+                apiResult.innerHTML = `<span class="success">✓ API is working! Response: ${JSON.stringify(data)}</span>`;
+            } catch (error) {
+                apiResult.innerHTML = `<span class="error">✗ API Error: ${error.message}</span>`;
+            }
+        }
+    </script>
+</body>
+</html>

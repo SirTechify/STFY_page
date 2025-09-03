@@ -23,7 +23,11 @@
     </nav>
 
     <section id="home" class="hero">
+        <div class="overlay"></div>
         <div class="hero-content">
+            <div class="profile-image">
+                <img src="{{ url_for('static', filename='images/profile/profile.jpg') }}" alt="Profile Picture">
+            </div>
             <h1>SirTechify</h1>
             <p class="subtitle">Engineer & Emerging Tech Enthusiast</p>
             <div class="cta-buttons">
@@ -33,18 +37,6 @@
                 <a href="https://www.youtube.com/@sirtechify" class="btn secondary" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-youtube"></i> YouTube
                 </a>
-            </div>
-            <div class="mailing-list">
-                <h2>Stay Updated</h2>
-                <div class="mailing-list-content">
-                    <p>Subscribe to our mailing list to get notified about new YouTube videos and Instagram posts.</p>
-                    <form id="mailing-list-form">
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <button type="submit" class="btn primary">Subscribe</button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
@@ -62,26 +54,35 @@
                         <div class="carousel-track">
                             <div class="carousel-slide">
                                 <div class="project-card">
+                                    <div class="project-image">
+                                        <img src="{{ url_for('static', filename='images/projects/race-predictor.jpg') }}" alt="Race Predictor App">
+                                    </div>
                                     <h3>Race Predictor App</h3>
-<p>Mobile friendly app for predicting race outcomes. Built with modern frameworks.</p>
-<div class="project-links">
-    <a href="https://race-predictor-app.onrender.com/" class="btn primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
-    <a href="https://github.com/SirTechify/Race_Predictor_App" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
-</div>
+                                    <p>Mobile friendly app for predicting race outcomes. Built with modern frameworks.</p>
+                                    <div class="project-links">
+                                        <a href="https://race-predictor-app.onrender.com/" class="btn primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                                        <a href="https://github.com/SirTechify/Race_Predictor_App" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="carousel-slide">
                                 <div class="project-card">
+                                    <div class="project-image">
+                                        <img src="{{ url_for('static', filename='images/projects/robo-demo-1000.jpg') }}" alt="Robo DeMo 1000">
+                                    </div>
                                     <h3>Robo DeMo 1000</h3>
-<p>Running Companion Robot for better health and motivation. Features real-time monitoring and computer vision.</p>
-<div class="project-links">
-    <a href="https://www.hackster.io/sirwalterrich/robo-demo-1000-companion-robot-for-distance-runners-e87440" class="btn primary" target="_blank" rel="noopener noreferrer">Hackster.IO Project Page</a>
-    <a href="https://github.com/SirTechify/-Robo-DeMo-1000" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
-</div>
+                                    <p>Running Companion Robot for better health and motivation. Features real-time monitoring and computer vision.</p>
+                                    <div class="project-links">
+                                        <a href="https://www.hackster.io/sirwalterrich/robo-demo-1000-companion-robot-for-distance-runners-e87440" class="btn primary" target="_blank" rel="noopener noreferrer">Hackster.IO Project Page</a>
+                                        <a href="https://github.com/SirTechify/-Robo-DeMo-1000" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="carousel-slide">
                                 <div class="project-card">
+                                    <div class="project-image">
+                                        <img src="{{ url_for('static', filename='images/projects/project3.jpg') }}" alt="Project 3">
+                                    </div>
                                     <h3>Project 3</h3>
                                     <p>Description of project 3</p>
                                     <div class="project-links">
@@ -112,42 +113,20 @@
         </div>
     </section>
 
-    <section id="mailing-list" class="mailing-list">
-        <h2>Stay Updated</h2>
-        <div class="mailing-list-content">
-            <p>Subscribe to our mailing list to get notified about new YouTube videos and Instagram posts.</p>
-            <form id="mailing-list-form">
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <button type="submit" class="btn primary">Subscribe</button>
-            </form>
-        </div>
-    </section>
+    <!-- Mailing list section removed -->
 
     <section id="contact" class="contact">
         <h2>Get in Touch</h2>
-        <div class="contact-content">
-            <form id="contact-form">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="btn primary">Send Message</button>
-            </form>
-            <div class="social-links">
-                <a href="https://github.com/SirTechify" class="social-icon" target="_blank" rel="noopener noreferrer">
+        <div class="contact-content" style="text-align: center;">
+            <p>Connect with me on social media:</p>
+            <div class="social-links" style="justify-content: center; margin-top: 20px;">
+                <a href="https://github.com/SirTechify" class="social-icon" target="_blank" rel="noopener noreferrer" style="margin: 0 15px; font-size: 2em;">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.youtube.com/@sirtechify" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.youtube.com/@sirtechify" class="social-icon" target="_blank" rel="noopener noreferrer" style="margin: 0 15px; font-size: 2em;">
                     <i class="fab fa-youtube"></i>
                 </a>
-                <a href="https://www.instagram.com/sirtechify" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/sirtechify" class="social-icon" target="_blank" rel="noopener noreferrer" style="margin: 0 15px; font-size: 2em;">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>

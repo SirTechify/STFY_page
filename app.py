@@ -1,9 +1,20 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template
+from flask import Flask, request, jsonify, send_from_directory, render_template, send_file
 from flask_mail import Mail, Message
 import os
+import sys
 from dotenv import load_dotenv
 
-app = Flask(__name__, static_url_path='/static', static_folder='static')
+# Initialize Flask app with static file configuration
+app = Flask(__name__, 
+            static_url_path='/static',
+            static_folder='static',
+            template_folder='templates')
+
+# Ensure static files are served with the correct MIME type
+@app.after_request
+def add_header(response):
+    response.cache_control.max_age = 300
+    return response
 
 # Load environment variables
 load_dotenv()
@@ -18,13 +29,40 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 
 mail = Mail(app)
 
+@app.route('/api/test')
+def test():
+    return jsonify({
+        'status': 'success',
+        'message': 'API is working!',
+        'python_version': sys.version
+    })
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route('/test-image')
+def test_image():
+    # Test if we can access static files
+    try:
+        return send_file('static/images/profile/profile.jpg', mimetype='image/jpeg')
+    except Exception as e:
+        return str(e), 500
+
 @app.route('/<path:path>')
 def static_proxy(path):
-    return app.send_static_file(path)
+    # First try to serve static files
+    static_file = os.path.join(app.static_folder, path)
+    if os.path.exists(static_file) and os.path.isfile(static_file):
+        return send_from_directory(app.static_folder, path)
+    
+    # Then try to serve template files
+    template_file = os.path.join(app.template_folder, path)
+    if os.path.exists(template_file) and os.path.isfile(template_file):
+        return send_from_directory(app.template_folder, path)
+    
+    # If file not found, serve index.html for SPA routing
+    return send_from_directory(app.template_folder, 'index.html')
 
 @app.route('/send_email', methods=['POST'])
 def send_email():
@@ -113,6 +151,10 @@ def subscribe():
         return jsonify({'error': 'An error occurred while processing your subscription'}), 500
 
 
+# Vercel requires an app variable for serverless functions
+app = app if 'app' in locals() else app
+
+# For local development
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
