@@ -197,9 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.background = 'rgba(5, 5, 5, 0.97)';
         } else {
-            navbar.style.background = 'var(--white)';
+            navbar.style.background = 'rgba(10, 10, 10, 0.85)';
         }
     });
 });
