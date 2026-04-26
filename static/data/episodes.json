@@ -1,0 +1,7 @@
+{
+  "_comment": "Public episode index for sirtechify.com. ONLY contains episodes already uploaded to YouTube. Planned/filming episodes are NOT in this file — they live in channel-bible.md (private). When you publish EP N to YouTube, append its entry to the episodes array below and push.",
+  "season": 1,
+  "tagline": "Hardware where it doesn't belong.",
+  "cadence": "every other Saturday",
+  "episodes": []
+}
