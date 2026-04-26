@@ -11,7 +11,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Visit http://localhost:5000. The contact-form and subscribe-list backends need `MAIL_USERNAME` and `MAIL_PASSWORD` env vars (Gmail app password); the site renders fine without them.
+Visit http://localhost:5000. The contact-form and subscribe-list backends need `MAIL_USERNAME` and `MAIL_PASSWORD` env vars; the site renders fine without them.
 
 ## Episodes
 
