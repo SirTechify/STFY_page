@@ -1,32 +1,22 @@
-# SirTechify Personal Website
+# sirtechify.com
 
-A modern, responsive personal website built with Flask (Python) and HTML/CSS/JavaScript.
+Channel home base for the [SirTechify](https://www.youtube.com/@sirtechify) YouTube show — *Hardware where it doesn't belong.* New episodes every other Saturday.
 
-## Getting Started
+Flask + HTML/CSS/JS, deployed on Vercel.
 
-1. Install dependencies:
+## Run locally
+
 ```bash
 pip install -r requirements.txt
-```
-
-2. Create a `.env` file with your environment variables:
-```
-MAIL_USERNAME=your-email@gmail.com
-MAIL_PASSWORD=your-app-specific-password
-```
-
-3. Start the development server:
-```bash
 python app.py
 ```
 
-## Features
-- Modern, clean UI with neon accents
-- Fully responsive design
-- Mailing list subscription
-- Contact form
-- About section
-- Project showcase
-- Social media links integration
-- Dark mode support
-- Email notifications for new subscribers
+Visit http://localhost:5000. The contact-form and subscribe-list backends need `MAIL_USERNAME` and `MAIL_PASSWORD` env vars (Gmail app password); the site renders fine without them.
+
+## Episodes
+
+`static/data/episodes.json` is the public episode index. Entries are appended one-by-one as each YouTube upload goes live — until EP 1 publishes, the site renders a "standing by" placeholder.
+
+## Deploy
+
+Auto-deploys to Vercel on push to `main`. Required env vars in the Vercel project: `MAIL_USERNAME`, `MAIL_PASSWORD`.
