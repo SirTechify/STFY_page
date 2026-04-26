@@ -7,11 +7,20 @@
     <meta name="description" content="Hardware where it doesn't belong. A YouTube show about retrofitting and integrating hardware the industry forgot. New episodes every other Saturday.">
     <meta name="theme-color" content="#0B0F14">
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='favicon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ url_for('static', filename='favicon-512x512.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+
     <!-- Open Graph -->
     <meta property="og:title" content="SirTechify — Hardware where it doesn't belong.">
     <meta property="og:description" content="A YouTube show about retrofitting and integrating hardware the industry forgot. New episodes every other Saturday.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sirtechify.com">
+    <meta property="og:image" content="https://sirtechify.com/static/images/hero-bg.png">
 
     <!-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +34,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <!-- ═══ TOP FLEET STATUS STRIP ═══ -->
+    <div class="top-status-strip" aria-hidden="true">
+        <span class="strip-bracket">&mdash;&mdash;&mdash;</span>
+        <span class="strip-text">FLEET STATUS &middot; STANDING BY &middot; AWAITING FIRST SIGNAL &middot; CYCLE 0000</span>
+        <span class="strip-bracket">&mdash;&mdash;&mdash;</span>
+    </div>
+
     <nav class="navbar">
         <div class="nav-logo">STFY</div>
         <ul class="nav-links">
@@ -38,8 +54,9 @@
         </div>
     </nav>
 
-    <!-- ═════════════════════════════════ HERO ═════════════════════════════════ -->
-    <section id="home" class="hero">
+    <!-- ═══ HERO with background image ═══ -->
+    <section id="home" class="hero hero-bg">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>STFY</h1>
             <p class="tagline">Hardware where it doesn't belong.</p>
@@ -55,7 +72,7 @@
         </div>
     </section>
 
-    <!-- ═════════════════════════════════ EPISODES ═════════════════════════════ -->
+    <!-- ═══ EPISODES ═══ -->
     <section id="episodes" class="episodes">
         <h2>Episodes</h2>
         <p class="section-subtitle">
@@ -63,11 +80,11 @@
             New every other Saturday.
         </p>
         <div class="episodes-grid" id="episodes-grid">
-            <!-- Populated by script.js from /static/data/episodes.json. Renders a "standing by" placeholder when no episodes have been published yet. -->
+            <!-- Populated by script.js -->
         </div>
     </section>
 
-    <!-- ═════════════════════════════════ ABOUT ═══════════════════════════════ -->
+    <!-- ═══ ABOUT ═══ -->
     <section id="about" class="about">
         <h2>About</h2>
         <div class="about-content">
@@ -78,9 +95,7 @@
                     and making them anyway. Each episode is a single device, a single problem, and the homebrew stack I built to solve it.
                     AI, robotics, embedded systems, single-board computers &mdash; but on equipment the spec sheets have moved past.
                 </p>
-                <p>
-                    I make old stuff more interesting.
-                </p>
+                <p>I make old stuff more interesting.</p>
                 <p class="handle-line">@SirTechify &middot; YouTube &middot; Instagram &middot; GitHub &middot; X</p>
             </div>
             <div class="capability-list">
@@ -96,7 +111,7 @@
         </div>
     </section>
 
-    <!-- ═════════════════════════════════ CONTACT ═════════════════════════════ -->
+    <!-- ═══ CONTACT ═══ -->
     <section id="contact" class="contact">
         <h2>Connect</h2>
         <p class="section-subtitle">Same handle everywhere.</p>
@@ -115,6 +130,22 @@
             </a>
         </div>
     </section>
+
+    <!-- ═══ FLEET LOG STRIP (decorative, above footer) ═══ -->
+    <div class="fleet-log-strip" aria-hidden="true">
+        <div class="hex-row">0xCAFE &nbsp; 0xDEAD &nbsp; 0xBEEF &nbsp; 0xFADE &nbsp; 0x0BAD &nbsp; 0xF00D &nbsp; 0xC0DE</div>
+        <div class="dot-led-row">
+            <span class="led cyan"></span><span class="led cyan dim"></span><span class="led cyan"></span>
+            <span class="led cyan dim"></span><span class="led red"></span>
+            <span class="led cyan"></span><span class="led cyan dim"></span><span class="led cyan"></span>
+            <span class="led cyan dim"></span><span class="led red"></span>
+            <span class="led cyan"></span><span class="led cyan dim"></span><span class="led cyan"></span>
+            <span class="led cyan dim"></span><span class="led red"></span>
+            <span class="led cyan"></span><span class="led cyan dim"></span><span class="led cyan"></span>
+            <span class="led cyan dim"></span><span class="led red"></span>
+        </div>
+        <div class="log-beat">LOGGING ENTRY &middot; NULL &middot; OPERATING REGARDLESS</div>
+    </div>
 
     <footer>
         <p>SirTechify &middot; &copy; 2026 &middot; Standing by until next signal.</p>
