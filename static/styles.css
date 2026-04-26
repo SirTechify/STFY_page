@@ -519,7 +519,7 @@ footer {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .hero-bg {
-    background-image: url('/static/images/hero-bg.png');
+    background-image: url('/static/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
