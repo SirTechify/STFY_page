@@ -34,15 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             menuBtn.classList.remove('active');
         });
     });
-    const carousel = document.querySelector('.carousel');
-    const carouselTrack = document.querySelector('.carousel-track');
-    const carouselSlides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-btn.prev');
-    const nextBtn = document.querySelector('.carousel-btn.next');
-    const dotsContainer = document.querySelector('.carousel-dots');
-
-    let currentSlide = 0;
-    const slideWidth = carouselSlides[0].offsetWidth;
 
     // Create dots
     carouselSlides.forEach((_, index) => {
@@ -94,23 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     carousel.addEventListener('mouseleave', () => {
         autoRotate = setInterval(nextSlide, 5000);
     });
-    // Mobile menu functionality
-    const menuBtn = document.querySelector('.menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (menuBtn && navLinks) {
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
-    }
-
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

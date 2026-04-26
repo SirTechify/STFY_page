@@ -47,57 +47,6 @@
             <div class="about-text">
                 <p>I've spent years developing expertise in engineering, with a strong focus on hardware and systems. As I continue to drive business strategy, I'm constantly seeking out new ways to apply my knowledge and experience to stay ahead of the curve.</p>
             </div>
-            <section id="projects" class="projects">
-                <h2>My Projects</h2>
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-track">
-                            <div class="carousel-slide">
-                                <div class="project-card">
-                                    <div class="project-image">
-                                        <img src="{{ url_for('static', filename='images/projects/race-predictor.jpg') }}" alt="Race Predictor App">
-                                    </div>
-                                    <h3>Race Predictor App</h3>
-                                    <p>Mobile friendly app for predicting race outcomes. Built with modern frameworks.</p>
-                                    <div class="project-links">
-                                        <a href="https://race-predictor-app.onrender.com/" class="btn primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                                        <a href="https://github.com/SirTechify/Race_Predictor_App" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="project-card">
-                                    <div class="project-image">
-                                        <img src="{{ url_for('static', filename='images/projects/robo-demo-1000.jpg') }}" alt="Robo DeMo 1000">
-                                    </div>
-                                    <h3>Robo DeMo 1000</h3>
-                                    <p>Running Companion Robot for better health and motivation. Features real-time monitoring and computer vision.</p>
-                                    <div class="project-links">
-                                        <a href="https://www.hackster.io/sirwalterrich/robo-demo-1000-companion-robot-for-distance-runners-e87440" class="btn primary" target="_blank" rel="noopener noreferrer">Hackster.IO Project Page</a>
-                                        <a href="https://github.com/SirTechify/-Robo-DeMo-1000" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="project-card">
-                                    <div class="project-image">
-                                        <img src="{{ url_for('static', filename='images/projects/project3.jpg') }}" alt="Project 3">
-                                    </div>
-                                    <h3>Project 3</h3>
-                                    <p>Description of project 3</p>
-                                    <div class="project-links">
-                                        <a href="#" class="btn primary">Live Demo</a>
-                                        <a href="#" class="btn secondary">GitHub</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-btn prev">&lt;</button>
-                    <button class="carousel-btn next">&gt;</button>
-                    <div class="carousel-dots"></div>
-                </div>
-            </section>
             <div class="skills">
                 <h3>Skills</h3>
                 <div class="skill-tags">
@@ -110,6 +59,58 @@
                     <span>Manufacturing</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="{{ url_for('static', filename='images/projects/race-predictor.jpg') }}" alt="Race Predictor App">
+                            </div>
+                            <h3>Race Predictor App</h3>
+                            <p>Mobile friendly app for predicting race outcomes. Built with modern frameworks.</p>
+                            <div class="project-links">
+                                <a href="https://race-predictor-app.onrender.com/" class="btn primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                                <a href="https://github.com/SirTechify/Race_Predictor_App" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="{{ url_for('static', filename='images/projects/robo-demo-1000.jpg') }}" alt="Robo DeMo 1000">
+                            </div>
+                            <h3>Robo DeMo 1000</h3>
+                            <p>Running Companion Robot for better health and motivation. Features real-time monitoring and computer vision.</p>
+                            <div class="project-links">
+                                <a href="https://www.hackster.io/sirwalterrich/robo-demo-1000-companion-robot-for-distance-runners-e87440" class="btn primary" target="_blank" rel="noopener noreferrer">Hackster.IO Project Page</a>
+                                <a href="https://github.com/SirTechify/-Robo-DeMo-1000" class="btn secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="{{ url_for('static', filename='images/projects/project3.jpg') }}" alt="Project 3">
+                            </div>
+                            <h3>Project 3</h3>
+                            <p>Description of project 3</p>
+                            <div class="project-links">
+                                <a href="#" class="btn primary">Live Demo</a>
+                                <a href="#" class="btn secondary">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev">&lt;</button>
+            <button class="carousel-btn next">&gt;</button>
+            <div class="carousel-dots"></div>
         </div>
     </section>
 
@@ -134,7 +135,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 SirTechify. All rights reserved.</p>
+        <p>&copy; 2026 SirTechify. All rights reserved.</p>
     </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

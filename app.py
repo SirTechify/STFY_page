@@ -151,9 +151,6 @@ def subscribe():
         return jsonify({'error': 'An error occurred while processing your subscription'}), 500
 
 
-# Vercel requires an app variable for serverless functions
-app = app if 'app' in locals() else app
-
 # For local development
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
