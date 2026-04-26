@@ -515,35 +515,9 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   Pass 1.5 — visual treatment (hero bg, top status strip, fleet log strip)
+   Hero background + overlay
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ─── TOP STATUS STRIP ─────────────────────────────────────────────────────── */
-.top-status-strip {
-    position: relative;
-    z-index: 1001;
-    text-align: center;
-    padding: 0.5rem 6%;
-    background: rgba(11, 15, 20, 0.92);
-    border-bottom: 1px solid var(--border-soft);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    line-height: 1.4;
-    user-select: none;
-}
-.top-status-strip .strip-bracket {
-    color: var(--accent-dim);
-    margin: 0 0.6rem;
-    letter-spacing: 0;
-}
-
-/* Push the navbar down so it sits below the status strip */
-.navbar { top: 28px; }
-.hero { padding-top: 7rem; }   /* a bit more room below the strip + navbar */
-
-/* ─── HERO BACKGROUND ────────────────────────────────────────────────────── */
 .hero-bg {
     background-image: url('/static/images/hero-bg.png');
     background-size: cover;
@@ -566,92 +540,4 @@ footer {
 .hero-bg .hero-content {
     position: relative;
     z-index: 1;
-}
-
-/* ─── FLEET LOG STRIP (above footer) ──────────────────────────────────────── */
-.fleet-log-strip {
-    text-align: center;
-    padding: 2.5rem 6% 1.5rem;
-    background: var(--bg-deep);
-    border-top: 1px solid var(--border-soft);
-    user-select: none;
-}
-.fleet-log-strip .hex-row {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-    margin-bottom: 1rem;
-}
-.fleet-log-strip .log-beat {
-    margin-top: 1rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-}
-
-/* CSS-rendered LED dot bank */
-.dot-led-row {
-    display: inline-flex;
-    gap: 14px;
-    align-items: center;
-    flex-wrap: nowrap;
-    justify-content: center;
-}
-.led {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-}
-.led.cyan {
-    background: var(--accent);
-    box-shadow: 0 0 6px var(--accent-glow);
-}
-.led.red {
-    background: var(--primary);
-    box-shadow: 0 0 6px var(--primary-glow);
-}
-.led.cyan.dim {
-    background: rgba(0, 229, 255, 0.28);
-    box-shadow: none;
-}
-
-/* The cyan LEDs gently pulse (every-other phasing keeps the row alive) */
-.led.cyan:not(.dim) {
-    animation: pulse-cyan 2.6s ease-in-out infinite;
-}
-.led.red {
-    animation: pulse-red 1.8s ease-in-out infinite;
-}
-@keyframes pulse-cyan {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.55; }
-}
-@keyframes pulse-red {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.45; }
-}
-
-/* ─── Responsive — tighten the status strip on mobile ─────────────────────── */
-@media (max-width: 768px) {
-    .top-status-strip {
-        font-size: 0.62rem;
-        padding: 0.4rem 4%;
-    }
-    .top-status-strip .strip-bracket {
-        display: none;   /* dashes get cluttered when text wraps */
-    }
-    .navbar { top: 24px; }
-    .hero { padding-top: 6rem; }
-    .fleet-log-strip {
-        padding: 2rem 4% 1rem;
-    }
-    .fleet-log-strip .hex-row {
-        font-size: 0.7rem;
-    }
-    .dot-led-row {
-        gap: 8px;
-    }
 }
