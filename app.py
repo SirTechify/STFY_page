@@ -4,10 +4,9 @@ Channel home base for the SirTechify YouTube show.
 Pass 1 rebrand 2026-04-25: subscribe UI deferred, contact form retained,
 episode index served as static JSON.
 """
-from flask import Flask, request, jsonify, send_from_directory, render_template
+from flask import Flask, request, jsonify, render_template
 from flask_mail import Mail, Message
 import os
-import sys
 from dotenv import load_dotenv
 
 # ─── App + static config ────────────────────────────────────────────────────
@@ -46,24 +45,7 @@ def index():
 
 @app.route('/api/health')
 def health():
-    return jsonify({
-        'status': 'fleet online',
-        'python': sys.version.split()[0],
-    })
-
-
-@app.route('/<path:path>')
-def static_proxy(path):
-    """Serve static and template files; fall through to index for SPA-style routes."""
-    static_file = os.path.join(app.static_folder, path)
-    if os.path.exists(static_file) and os.path.isfile(static_file):
-        return send_from_directory(app.static_folder, path)
-
-    template_file = os.path.join(app.template_folder, path)
-    if os.path.exists(template_file) and os.path.isfile(template_file):
-        return send_from_directory(app.template_folder, path)
-
-    return send_from_directory(app.template_folder, 'index.html')
+    return jsonify({'status': 'fleet online'})
 
 
 @app.route('/send_email', methods=['POST'])
