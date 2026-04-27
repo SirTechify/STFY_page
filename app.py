@@ -6,6 +6,9 @@ episode index served as static JSON.
 """
 from flask import Flask, request, jsonify, render_template
 from flask_mail import Mail, Message
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from werkzeug.middleware.proxy_fix import ProxyFix
 import os
 from dotenv import load_dotenv
 
@@ -17,11 +20,32 @@ app = Flask(
     template_folder='templates',
 )
 
+# Vercel terminates TLS and proxies inbound requests; trust one X-Forwarded-*
+# hop so request.remote_addr (used by the rate limiter) reflects the real
+# client IP rather than Vercel's edge.
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
+
 
 @app.after_request
-def add_header(response):
-    # Short cache so deploys roll out quickly without manual cache-bust
+def add_security_headers(response):
     response.cache_control.max_age = 300
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    response.headers['Permissions-Policy'] = (
+        'geolocation=(), microphone=(), camera=(), payment=(), usb=()'
+    )
+    response.headers['Content-Security-Policy'] = (
+        "default-src 'self'; "
+        "style-src 'self' fonts.googleapis.com cdnjs.cloudflare.com; "
+        "font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com; "
+        "img-src 'self' data:; "
+        "script-src 'self'; "
+        "connect-src 'self'; "
+        "frame-ancestors 'none'; "
+        "base-uri 'self'; "
+        "form-action 'self'"
+    )
     return response
 
 
@@ -36,6 +60,16 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 
 mail = Mail(app)
 
+# ─── Rate limiting (per-IP, in-memory) ──────────────────────────────────────
+# Memory storage resets on container cold-start in serverless, so this is a
+# guardrail against bursty abuse, not a strict distributed limit.
+limiter = Limiter(get_remote_address, app=app, storage_uri='memory://')
+
+
+@app.errorhandler(429)
+def ratelimit_handler(_e):
+    return jsonify({'error': 'Too many requests, please try again later.'}), 429
+
 
 # ─── Routes ──────────────────────────────────────────────────────────────────
 @app.route('/')
@@ -49,6 +83,7 @@ def health():
 
 
 @app.route('/send_email', methods=['POST'])
+@limiter.limit('5 per 15 minutes')
 def send_email():
     """Contact form. Validates fields, sends a notification email if creds present."""
     try:
@@ -67,12 +102,14 @@ def send_email():
                 'message': f"Missing required fields: {', '.join(missing)}",
             }), 400
 
-        if '@' not in email or '.' not in email.split('@')[-1]:
+        # Reject newlines/null bytes before using email as a Reply-To header
+        if any(c in email for c in '\r\n\x00') or '@' not in email or '.' not in email.split('@')[-1]:
             return jsonify({'success': False, 'message': 'Invalid email format'}), 400
 
         msg = Message(
             'New contact-form submission — sirtechify.com',
             recipients=[os.getenv('MAIL_USERNAME') or 'test@example.com'],
+            reply_to=email,
         )
         msg.body = f'Name: {name}\nEmail: {email}\nMessage: {message}'
 
@@ -87,6 +124,7 @@ def send_email():
 
 
 @app.route('/api/subscribe', methods=['POST'])
+@limiter.limit('3 per hour')
 def subscribe():
     """Mailing list signup. UI re-enables closer to EP 1 launch; backend stays warm."""
     try:
@@ -95,7 +133,7 @@ def subscribe():
             return jsonify({'error': 'Email is required'}), 400
 
         email = (data.get('email') or '').strip()
-        if not email or '@' not in email or '.' not in email.split('@')[-1]:
+        if any(c in email for c in '\r\n\x00') or not email or '@' not in email or '.' not in email.split('@')[-1]:
             return jsonify({'error': 'Please provide a valid email address'}), 400
 
         msg = Message(
